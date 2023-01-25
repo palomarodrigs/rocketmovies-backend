@@ -54,6 +54,10 @@ class UsersController {
         throw new AppError('The old password does not match.')
       }
 
+      if (password === old_password) {
+        throw new AppError('The new password must be different from the current one.')
+      }
+
       user.password = await hash(password, 8)
     }
 
